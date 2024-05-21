@@ -1,4 +1,4 @@
-import { resolve } from 'path';
+import path, { resolve } from 'path';
 
 export default {
   config: path.resolve('config', 'database.json'),
