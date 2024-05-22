@@ -1,5 +1,6 @@
 import { AllowNull, AutoIncrement, Column, DataType, Model, Table } from "sequelize-typescript";
 import { ApiProperty } from "@nestjs/swagger"
+
 interface UserCreationAttrs {
   email: string;
   password: string;
