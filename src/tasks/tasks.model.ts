@@ -1,5 +1,7 @@
-import { AllowNull, AutoIncrement, Column, DataType, Model, Table } from "sequelize-typescript";
+import { AllowNull, AutoIncrement, BelongsToMany, Column, DataType, Model, Table } from "sequelize-typescript";
 import { ApiProperty } from "@nestjs/swagger"
+import { User } from "src/users/users.model";
+import { UserTasks } from "./user-tasks.model";
 
 interface TaskCreationAttrs {
   tasksName: string;
@@ -19,4 +21,7 @@ export class Task extends Model<Task, TaskCreationAttrs> {
   @ApiProperty({example: 'Done', description: 'Or not?'})
   @Column({type: DataType.BOOLEAN, allowNull: false})
   tasksIsCompleted: boolean;
+
+  @BelongsToMany(() => User, () => UserTasks)
+  users: User[];
 }

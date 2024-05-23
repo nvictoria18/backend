@@ -1,5 +1,7 @@
-import { AllowNull, AutoIncrement, Column, DataType, Model, Table } from "sequelize-typescript";
+import { BelongsToMany, Column, DataType, Model, Table } from "sequelize-typescript";
 import { ApiProperty } from "@nestjs/swagger"
+import { Task } from "src/tasks/tasks.model";
+import { UserTasks } from "src/tasks/user-tasks.model";
 
 interface UserCreationAttrs {
   email: string;
@@ -19,4 +21,7 @@ export class User extends Model<User, UserCreationAttrs> {
   @ApiProperty({example: '1234', description: 'Пароль'})
   @Column({type: DataType.STRING, allowNull: false})
   password: string;
+  
+  @BelongsToMany(() => Task, () => UserTasks)
+  tasks: Task[];
 }
