@@ -13,6 +13,7 @@ import { TasksModule } from 'src/tasks/tasks.module';
   imports: [
     SequelizeModule.forFeature([User, Task, UserTasks]),
     TasksModule
-  ]
+  ],
+  exports: [UsersService]
 })
 export class UsersModule {}
