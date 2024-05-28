@@ -1,5 +1,6 @@
 import { BelongsToMany, Column, DataType, Model, Table } from "sequelize-typescript";
 import { ApiProperty } from "@nestjs/swagger"
+
 import { Task } from "src/tasks/tasks.model";
 import { UserTasks } from "src/tasks/user-tasks.model";
 

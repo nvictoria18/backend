@@ -1,6 +1,8 @@
-import { Injectable } from '@nestjs/common';
-import { CreateTaskDto } from './dto/create-task.dto';
 import { InjectModel } from '@nestjs/sequelize';
+
+import { Injectable } from '@nestjs/common';
+
+import { CreateTaskDto } from './dto/create-task.dto';
 import { Task } from './tasks.model';
 
 @Injectable()
