@@ -1,5 +1,6 @@
-import { AllowNull, AutoIncrement, Column, DataType, Model, Table } from "sequelize-typescript";
+import { Column, DataType, Model, Table } from "sequelize-typescript";
 import { ApiProperty } from "@nestjs/swagger"
+
 interface UserCreationAttrs {
   email: string;
   password: string;
@@ -18,4 +19,5 @@ export class User extends Model<User, UserCreationAttrs> {
   @ApiProperty({example: '1234', description: 'Пароль'})
   @Column({type: DataType.STRING, allowNull: false})
   password: string;
+  tasks: import("/home/dunice/Рабочий стол/todo/project-name/src/tasks/tasks.model").Task[];
 }

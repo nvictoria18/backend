@@ -12,7 +12,9 @@ export class UsersService {
   constructor(@InjectModel(User) private userRepository: typeof User,
                                   private taskService: TasksService) {
 
-  async createUser(dto: CreateRoleDto) {
+  }
+
+  async createUser(dto: CreateUserDto) {
     const user = await this.userRepository.create(dto);
     const task = await this.taskService.getTaskByName("DO");
     await user.$set('tasks', [task.id]);

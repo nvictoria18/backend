@@ -1,30 +1,32 @@
-import { BelongsToMany, Column, DataType, Model, Table } from "sequelize-typescript";
-import { ApiProperty } from "@nestjs/swagger"
-import { User } from "src/users/users.model";
-import { UserRoles } from "./user-tasks.model";
+import { BelongsToMany, 
+  Column, 
+  DataType, 
+  Model, 
+  Table } from "sequelize-typescript";
 
-interface TasksCreationAttrs {
-  value: string;
-  description: string;
+import { User } from "src/users/users.model";
+import { UserTasks } from "./user-tasks.model";
+import { ApiProperty } from "@nestjs/swagger";
+
+interface TaskCreationAttrs {
+  tasksName: string;
+  tasksIsCompleted: boolean;
 }
 
 @Table({tableName: 'tasks'})
-export class Tasks extends Model<Tasks, TasksCreationAttrs> {
-
-  @ApiProperty({example: 'Do homework', description: 'Что делать?'})
-  @Column({type: DataType.INTEGER, unique:true, autoIncrement: true, primaryKey: true})
-  tasksName: string;
-
-  @ApiProperty({example: 'false', description: 'Сделано или нет'})
-  @Column({type: DataType.BOOLEAN, allowNull: false})
-  tasksIsCompleted: boolean;
-
-  @ApiProperty({example: '1', description: 'Уникальный идентификатор'})
+export class Task extends Model<Task, TaskCreationAttrs> {
+  @ApiProperty({example: '1', description: 'Unique'})
   @Column({type: DataType.INTEGER, unique:true, autoIncrement: true, primaryKey: true})
   id: number;
 
-  @BelongsToMany(() => User, () => UserRoles)
+  @ApiProperty({example: 'Do washing car', description: 'What to do?'})
+  @Column({type: DataType.STRING, allowNull: false})
+  tasksName: string;
+
+  @ApiProperty({example: 'Done', description: 'Or not?'})
+  @Column({type: DataType.BOOLEAN, allowNull: false})
+  tasksIsCompleted: boolean;
+
+  @BelongsToMany(() => User, () => UserTasks)
   users: User[];
 }
-
-
