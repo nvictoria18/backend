@@ -3,8 +3,6 @@ import { SequelizeModule } from "@nestjs/sequelize";
 import { ConfigModule } from "@nestjs/config";
 import { Module } from "@nestjs/common";
 
-import { UsersModule } from './users/users.module';
-import { User } from "./users/users.model";
 import { TasksModule } from './tasks/tasks.module';
 import { Task } from "./tasks/tasks.model";
 
@@ -22,10 +20,9 @@ import { Task } from "./tasks/tasks.model";
       username: process.env.POSTGRES_USER,
       password: String(process.env.POSTGRES_PASSWORD),
       database: process.env.POSTGRES_DB,
-      models: [User, Task],
+      models: [ Task ],
       autoLoadModels: true, 
     }),
-    UsersModule,
     TasksModule,
   ]
 })

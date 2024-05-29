@@ -1,6 +1,6 @@
 import { IsBoolean, 
-                    IsNumber, 
-                    IsString } from "class-validator";
+        IsNumber, 
+        IsString } from "class-validator";
 
 export class CreateTaskDto {
     @IsString()

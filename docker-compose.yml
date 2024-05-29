@@ -4,12 +4,12 @@ services:
     image: postgres
     container_name: todos
     ports:
-      - '5432:5432'
+      - ${PORT}:${PORT}
     environment:
-      - POSTGRES_HOST=localhost
-      - POSTGRES_USE=todos
-      - POSTGRES_PASSWORD=victoria
-      - POSTGRES_DATABASE=todos
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DATABASE=${POSTGRES_DB}
     command: postgres
     restart: always
 

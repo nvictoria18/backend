@@ -6,10 +6,6 @@ import { UpdateTaskDto } from './dto/update-task.dto';
 
 @Injectable()
 export class TasksService {
-  // Удалите эту строку:
-  // findAll(): Task[] | PromiseLike<Task[]> {
-  //   throw new Error('Method not implemented.');
-  // }
 
   constructor(@InjectModel(Task) private taskRepository: typeof Task) {}
 
@@ -23,8 +19,8 @@ export class TasksService {
     return tasks;
   }
 
-  async getTaskByName(tasksName: string) {
-    const task = await this.taskRepository.findOne({ where: { tasksName } });
+  async getTaskById(id: number) {
+    const task = await this.taskRepository.findOne({ where: { id } });
     return task;
   }
 

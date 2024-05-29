@@ -21,9 +21,9 @@ export class TasksController {
     return await this.tasksService.findAll();
   }
 
-  @Get('/:tasksName')
-  getByName(@Param('tasksName') tasksName: string) {
-    return this.tasksService.getTaskByName(tasksName);
+  @Get('/:id')
+  getById(@Param('id') id: number) {
+    return this.tasksService.getTaskById(id);
   }
 
   @Put('/:id')
