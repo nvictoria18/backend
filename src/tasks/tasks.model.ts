@@ -1,6 +1,4 @@
-import { validate } from "class-validator";
-import { BelongsTo, 
-  Column, 
+import { Column, 
   DataType, 
   Model, 
   Table } from "sequelize-typescript";

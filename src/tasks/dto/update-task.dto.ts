@@ -1,5 +1,4 @@
 import { IsBoolean,
-       IsNumber,
        IsString } from 'class-validator';
 
        export class UpdateTaskDto {
@@ -9,6 +8,4 @@ import { IsBoolean,
         @IsBoolean()
         readonly tasksIsCompleted: boolean;
     
-        @IsNumber()
-        readonly userId: number;
     }

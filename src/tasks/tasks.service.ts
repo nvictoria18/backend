@@ -30,6 +30,7 @@ export class TasksService {
       throw new Error('Task not found');
     }
     task.tasksName = dto.tasksName || task.tasksName;
+    task.tasksIsCompleted = dto.tasksIsCompleted || task.tasksIsCompleted;
     await task.save();
     return task;
   }
