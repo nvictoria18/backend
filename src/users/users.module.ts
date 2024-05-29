@@ -7,13 +7,12 @@ import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 import { User } from './users.model';
 import { Task } from 'src/tasks/tasks.model';
-import { UserTasks } from 'src/tasks/user-tasks.model';
 
 @Module({
   controllers: [UsersController],
   providers: [UsersService],
   imports: [
-    SequelizeModule.forFeature([User, Task, UserTasks]),
+    SequelizeModule.forFeature([User, Task]),
     TasksModule
   ],
   exports: [UsersService]

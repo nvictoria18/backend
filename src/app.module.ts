@@ -7,7 +7,6 @@ import { UsersModule } from './users/users.module';
 import { User } from "./users/users.model";
 import { TasksModule } from './tasks/tasks.module';
 import { Task } from "./tasks/tasks.model";
-import { UserTasks } from "./tasks/user-tasks.model";
 
 @Module({
   controllers: [],
@@ -23,7 +22,7 @@ import { UserTasks } from "./tasks/user-tasks.model";
       username: process.env.POSTGRES_USER,
       password: String(process.env.POSTGRES_PASSWORD),
       database: process.env.POSTGRES_DB,
-      models: [User, Task, UserTasks],
+      models: [User, Task],
       autoLoadModels: true, 
     }),
     UsersModule,
