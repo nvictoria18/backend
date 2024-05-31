@@ -1,6 +1,6 @@
 import { IsBoolean, IsString } from 'class-validator';
 
-export class CreateTaskDto {
+export class UpdateTaskDto {
   @IsString()
   readonly tasksName: string;
 

@@ -24,7 +24,4 @@ export class Task extends Model<Task, TaskCreationAttrs> {
 
   @Column({ type: DataType.BOOLEAN, allowNull: false, defaultValue: false })
   tasksIsCompleted: boolean;
-
-  @BelongsToMany(() => User, () => UserTasks)
-  users: User[];
 }

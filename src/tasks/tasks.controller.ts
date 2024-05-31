@@ -16,13 +16,13 @@ import { UpdateTaskDto } from './dto/update-task.dto';
 
 @Controller('tasks')
 export class TasksController {
+  constructor(private tasksService: TasksService) {}
 
-    constructor(private tasksService: TasksService) {}
-
-    @Post()
-    create(@Body() dto: CreateTaskDto) {
-        return this.tasksService.createTask(dto);
-    }
+  @Post()
+  @HttpCode(201)
+  create(@Body() dto: CreateTaskDto) {
+    return this.tasksService.createTask(dto);
+  }
 
   @Get()
   @HttpCode(200)
