@@ -1,9 +1,18 @@
-import { Body, Controller, Get, Param, Post, Put, Delete, HttpCode } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  Delete,
+  HttpCode,
+} from '@nestjs/common';
 
 import { TasksService } from './tasks.service';
+import { Task } from './tasks.model';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
-import { Task } from './tasks.model';
 
 @Controller('tasks')
 export class TasksController {
@@ -28,7 +37,10 @@ export class TasksController {
 
   @Put('/:id')
   @HttpCode(200)
-  async update(@Param('id') id: number, @Body() dto: UpdateTaskDto): Promise<Task> {
+  async update(
+    @Param('id') id: number,
+    @Body() dto: UpdateTaskDto,
+  ): Promise<Task> {
     return await this.tasksService.updateTask(id, dto);
   }
 
