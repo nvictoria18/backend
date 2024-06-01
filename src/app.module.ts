@@ -1,10 +1,10 @@
-import { SequelizeModule } from "@nestjs/sequelize";
+import { SequelizeModule } from '@nestjs/sequelize';
 
-import { ConfigModule } from "@nestjs/config";
-import { Module } from "@nestjs/common";
+import { ConfigModule } from '@nestjs/config';
+import { Module } from '@nestjs/common';
 
 import { TasksModule } from './tasks/tasks.module';
-import { Task } from "./tasks/tasks.model";
+import { Task } from './tasks/tasks.model';
 
 @Module({
   controllers: [],
@@ -20,10 +20,10 @@ import { Task } from "./tasks/tasks.model";
       username: process.env.POSTGRES_USER,
       password: String(process.env.POSTGRES_PASSWORD),
       database: process.env.POSTGRES_DB,
-      models: [ Task ],
-      autoLoadModels: true, 
+      models: [Task],
+      autoLoadModels: true,
     }),
     TasksModule,
-  ]
+  ],
 })
 export class AppModule {}
