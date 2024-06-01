@@ -11,8 +11,8 @@ async function start() {
   const config = new DocumentBuilder()
     .setTitle('Nestjs')
     .setDescription('Nestjs')
-    .setVersion('1.0.0')
-    .addTag('Victoria')
+    .setVersion('1.0.0') 
+    .addTag('Victoria') 
     .build()
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('/api/docs', app, document)
