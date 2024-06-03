@@ -20,7 +20,7 @@ export class TasksController {
 
   @Post()
   @HttpCode(201)
-  createTask(@Body() dto: CreateTaskDto) {
+  createTask(@Body() dto: CreateTaskDto): Promise<Task> {
     return this.tasksService.createTask(dto);
   }
 
@@ -31,7 +31,7 @@ export class TasksController {
   }
 
   @Get('/:id')
-  getTaskById(@Param('id') id: number) {
+  getTaskById(@Param('id') id: number): Promise<Task> {
     return this.tasksService.getTaskById(id);
   }
 

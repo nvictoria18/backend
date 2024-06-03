@@ -8,7 +8,7 @@ import { Task } from './tasks/tasks.model';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: `${process.env}`,
+      envFilePath: `.env`,
     }),
     SequelizeModule.forRoot({
       dialect: 'postgres',
