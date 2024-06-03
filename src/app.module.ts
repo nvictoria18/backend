@@ -1,5 +1,4 @@
 import { SequelizeModule } from '@nestjs/sequelize';
-
 import { ConfigModule } from '@nestjs/config';
 import { Module } from '@nestjs/common';
 
@@ -7,11 +6,9 @@ import { TasksModule } from './tasks/tasks.module';
 import { Task } from './tasks/tasks.model';
 
 @Module({
-  controllers: [],
-  providers: [],
   imports: [
     ConfigModule.forRoot({
-      envFilePath: `.env`,
+      envFilePath: `${process.env}`,
     }),
     SequelizeModule.forRoot({
       dialect: 'postgres',

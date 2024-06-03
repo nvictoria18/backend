@@ -1,6 +1,5 @@
 import { InjectModel } from '@nestjs/sequelize';
-
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 
 import { Task } from './tasks.model';
 import { CreateTaskDto } from './dto/create-task.dto';
@@ -10,37 +9,36 @@ import { UpdateTaskDto } from './dto/update-task.dto';
 export class TasksService {
   constructor(@InjectModel(Task) private taskRepository: typeof Task) {}
 
-  async createTask(dto: CreateTaskDto) {
-    const task = await this.taskRepository.create(dto);
-    return task;
+  async createTask(newTask: CreateTaskDto): Promise<Task> {
+    const task = await this.taskRepository.create(newTask); return task;
   }
 
-  async findAll(): Promise<Task[]> {
-    const tasks = await this.taskRepository.findAll();
+  findAll(): Promise<Task[]> {
+    const tasks = this.taskRepository.findAll();
     return tasks;
   }
 
-  async getTaskById(id: number) {
-    const task = await this.taskRepository.findOne({ where: { id } });
-    return task;
+  async getTaskById(id: number): Promise<Task> {
+    const task = await this.taskRepository.findOne({ where: { id } }); return task;
   }
 
-  async updateTask(id: number, dto: UpdateTaskDto): Promise<Task> {
-    const task = await this.taskRepository.findByPk(id);
-    if (!task) {
-      throw new Error('Task not found');
-    }
-    task.tasksName = dto.tasksName || task.tasksName;
-    task.tasksIsCompleted = dto.tasksIsCompleted || task.tasksIsCompleted;
-    await task.save();
-    return task;
+  async updateTask(tasksId: number, changeTask: UpdateTaskDto): Promise<never | Task> {
+    const [count, returningObj] = await this.taskRepository.update(changeTask, {
+      where: {
+        id: tasksId
+      },
+      returning: true,
+    });
+    if (count === 0) throw new NotFoundException(`Not found task with id: ${tasksId}`);
+    return returningObj[0];
   }
 
-  async deleteTask(id: number): Promise<void> {
+  async deleteTask(id: number): Promise<number> {
     const task = await this.taskRepository.findByPk(id);
     if (!task) {
       throw new Error('Task not found');
     }
     await task.destroy();
+    return 1;
   }
 }

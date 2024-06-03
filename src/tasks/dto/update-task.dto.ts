@@ -2,8 +2,8 @@ import { IsBoolean, IsString } from 'class-validator';
 
 export class UpdateTaskDto {
   @IsString()
-  readonly tasksName: string;
+  readonly tasksName?: string;
 
   @IsBoolean()
-  readonly tasksIsCompleted: boolean;
+  readonly tasksIsCompleted?: boolean = false;
 }
